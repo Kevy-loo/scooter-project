@@ -1,5 +1,4 @@
 class User {
-  // User code here
   constructor(username, password, age) {
     this.username = username;
     this.password = password;
@@ -10,9 +9,13 @@ class User {
   login(password) {
     if (this.password === password) {
       this.loggedIn = true;
+      // we can remove this and next return statements
+      // as there is nothing being returned for this method
       return true
     } else {
       return false
+      // because of the previous return statement,
+      // this error is never thrown
       throw new Error("Incorrect password");
     }
   }

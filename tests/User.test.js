@@ -1,9 +1,9 @@
 const User = require("../src/User");
 
-// User tests here
-
 // test username
 describe("testing User", () => {
+  //the first three tests can be condensed into one, where all the attributes
+  // are being tested at once
   test("testing username", () => {
     const user = new User("blank", "dsajhbijsdba", 20, true);
 
@@ -22,6 +22,8 @@ describe("testing User", () => {
     const user = new User('blank', '1234', 20);
     console.log(user)
 
+    // if we remove the return statements in the User class,
+    // this first expectation statement can be removed too
     expect(user.login('1234')).toBe(true); // Use Jest's expect function to check that the login method returns true when the correct username and password are provided
     expect(user.loggedIn).toBe(true); // Use Jest's expect function to check that the loggedIn property is set to true after a successful login
   });
@@ -33,12 +35,8 @@ describe("testing User", () => {
     user.logout(); // Call the logout method to log the user out
     expect(user.loggedIn).toBeFalsy(); // Use Jest's expect function to check that the loggedIn property is set to false after a logout
   });
+
+  // let's add a test here to make sure that an error is being thrown
+  // when an incorrect password is given 
 });
 
-// test password
-
-// test age
-
-// test login
-
-// test logout

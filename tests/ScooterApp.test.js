@@ -2,10 +2,11 @@ const Scooter = require("../src/Scooter");
 const User = require("../src/User");
 const ScooterApp = require("../src/ScooterApp");
 
-// ScooterApp tests here
-
+// similar comment in the Scooter test file - 
+// adding error cases are really important to test all scenarios,
+// regardless if successful or error scenarios
 describe("testing scooter app", () => {
-    const scootApp = new ScooterApp()
+  const scootApp = new ScooterApp()
   // register user
   test("register a new user", () => {
     scootApp.registerUser("kevin", "password1", 23);
@@ -27,7 +28,7 @@ describe("testing scooter app", () => {
       expect(scootApp.registeredUser['kevin1'].loggedIn).toBe(false);
   });
 
-  // rent scooter
+  // create scooter
   test('create a new scooter and add it to the station', () => {
       scootApp.createScooter("one");
       console.log(scootApp.stations)
@@ -35,14 +36,20 @@ describe("testing scooter app", () => {
       expect(scootApp.stations["one"]).toContain(scootApp.stations["one"][0]);
   });
 
+  // rent scooter test missing 
+
   // dock scooter
   test('docking scooter', () => {
+      // love this use of jest spying
       const spy = jest.spyOn(console, 'log').mockImplementation(() => {});
       let scooter = new Scooter();
       scootApp.dockScooter(scooter, "two");
       let station = scootApp.stations["two"];
       expect(console.log).toHaveBeenCalledWith('scooter is docked');
       expect(station).toContain(scooter);
+
+      // you can also check the scooter's properties
+      // to make sure the user is null and scooter.station is the station
       spy.mockRestore();
   })
 });
